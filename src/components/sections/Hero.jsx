@@ -14,7 +14,7 @@ const Hero = () => {
                     playsInline
                     poster="public/images/20250914_181636.jpg"
                 >
-                    <source src="public/images/20250914 181958(1).mp4" type="video/mp4" />
+                    <source src="public/20250914 181958(1).mp4" type="video/mp4" />
                     Tu navegador no soporta el tag de video.
                 </video>
 
