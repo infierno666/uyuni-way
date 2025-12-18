@@ -12,9 +12,9 @@ const Hero = () => {
                     loop
                     muted
                     playsInline
-                    poster="public/hasd.jpg"
+                    poster="/hasd.webp"
                 >
-                    <source src="public/viedo.mp4" type="video/mp4" />
+                    <source src="/viedo.mp4" type="video/mp4" />
                     Tu navegador no soporta el tag de video.
                 </video>
 
