@@ -4,10 +4,10 @@ import { useAuth } from '../context/AuthContext'; // <--- Importamos Auth
 import { useNavigate } from 'react-router-dom';   // <--- Para redirigir si no está logueado
 
 // Componentes
-import ForumHeader from '../components/forum/ForumHeader';
-import ForumControls from '../components/forum/ForumControls';
-import ForumFilters from '../components/forum/ForumFilters';
-import ForumFeed from '../components/forum/ForumFeed';
+import ForumHeader from '../components/Forum/ForumHeader';
+import ForumControls from '../components/Forum/ForumControls';
+import ForumFilters from '../components/Forum/ForumFilters';
+import ForumFeed from '../components/Forum/ForumFeed';
 import CreatePostModal from '../components/Forum/CreatePostModal'; // <--- Importamos el Modal
 
 export default function ForumHome() {
