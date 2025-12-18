@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react'; // <--- Importamos useRef
+import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { useAuth } from '../context/AuthContext';
-import { ArrowLeft, Calendar, User, MessageSquare, Loader2, MapPin, Send, Eye } from 'lucide-react'; // <--- Importé Eye para el ícono
+import { ArrowLeft, Calendar, User, MessageSquare, Loader2, MapPin, Send, Eye } from 'lucide-react';
 
 export default function PostDetail() {
   const { id } = useParams();
@@ -14,7 +14,6 @@ export default function PostDetail() {
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   
-  // <--- NUEVO: useRef para evitar doble conteo en modo desarrollo
   const viewCounted = useRef(false);
 
   const fetchComments = async () => {
@@ -31,7 +30,6 @@ export default function PostDetail() {
     const loadData = async () => {
       setLoading(true);
       
-      // 1. Cargar el Post
       const { data: postData, error: postError } = await supabase
         .from('posts')
         .select(`*, profiles ( username, avatar_url )`)
@@ -44,8 +42,6 @@ export default function PostDetail() {
         setPost(postData);
         await fetchComments();
 
-        // 2. <--- NUEVO: Incrementar visitas (RPC)
-        // Usamos useRef para asegurar que solo pase 1 vez por montaje
         if (!viewCounted.current) {
           await supabase.rpc('increment_views', { post_id: id });
           viewCounted.current = true;
@@ -58,7 +54,6 @@ export default function PostDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // ... (El resto de tu lógica de handleCommentSubmit sigue igual) ...
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) return;
@@ -114,9 +109,27 @@ export default function PostDetail() {
             </div>
           </div>
 
+
+
+          {/* CONTENIDO TEXTO */}
           <div className="p-6 sm:p-8 bg-white">
             <div className="prose max-w-none text-slate-700 leading-relaxed whitespace-pre-wrap text-lg">{post.content}</div>
           </div>
+
+
+          {/* IMAGEN DEL POST (NUEVO BLOQUE) */}
+          {post.image_url && (
+            <div className="w-full h-auto max-h-[500px] overflow-hidden bg-gray-100 border-b border-slate-100">
+              <img 
+                src={post.image_url} 
+                alt={post.title} 
+                className="w-full h-full object-contain mx-auto "
+                loading="lazy"
+              />
+            </div>
+          )}
+
+          
 
           {/* Footer Stats */}
           <div className="bg-slate-50 px-6 py-4 border-t border-slate-100 flex items-center justify-between text-slate-500 text-sm">
@@ -125,10 +138,8 @@ export default function PostDetail() {
                 <div className="flex items-center"><MessageSquare className="w-4 h-4 mr-1" /> {comments.length} comentarios</div>
              </div>
              
-             {/* <--- NUEVO: Mostrar contador de vistas */}
              <div className="flex items-center text-slate-400 font-medium">
                 <Eye className="w-4 h-4 mr-1" /> 
-                {/* Mostramos +1 visualmente porque la BD tarda unos ms en actualizarse */}
                 {post.views + 1} vistas
              </div>
           </div>
