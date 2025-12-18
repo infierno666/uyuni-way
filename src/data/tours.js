@@ -8,7 +8,7 @@ export const toursData = [
         price: 250,
         currency: "Bs",
         duration: "10 Horas",
-        image: "public/sadfsa.jpg",
+        image: "/sadfsa.webp",
         tags: ["Almuerzo", "Fotos Pro", "Español/Inglés"]
     },
     {
@@ -20,7 +20,7 @@ export const toursData = [
         price: 1200,
         currency: "Bs",
         duration: "3 Días",
-        image: "public/fadwe.jpg",
+        image: "/fadwe.webp",
         tags: ["Hospedaje", "Lagunas Coloradas", "Transfer a Chile"]
     },
     {

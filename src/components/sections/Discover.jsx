@@ -36,7 +36,7 @@ const Discover = () => {
             >
                 <img
                     // Asegúrate que esta imagen exista en tu carpeta public/images/
-                    src="/images/bgiolse.jpg"
+                    src="/bgiolse.webp"
                     alt="Fondo Uyuni"
                     className="w-full h-full object-cover opacity-100 transition-transform will-change-transform"
                 />
