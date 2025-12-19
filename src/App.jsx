@@ -6,10 +6,12 @@ import ForumHome from './pages/ForumHome';
 import Login from './pages/Login';           // <--- Importar Login
 import { AuthProvider } from './context/AuthContext'; // <--- Importar Contexto
 import PostDetail from './pages/PostDetail';
+import NewsPage from './pages/NewsPage';
 
 function App() {
   return (
     <AuthProvider> {/* <--- Envolver TODO aquí */}
+    
       <div className="font-sans flex flex-col min-h-screen">
         <Navbar />
 
@@ -19,6 +21,7 @@ function App() {
             <Route path="/foro" element={<ForumHome />} />
             <Route path="/login" element={<Login />} /> {/* <--- Nueva Ruta */}
             <Route path="/foro/:id" element={<PostDetail />} /> {/* <--- 2. Nueva Ruta Dinámica */}
+            <Route path="/noticias" element={<NewsPage />} />
           </Routes>
         </main>
 
