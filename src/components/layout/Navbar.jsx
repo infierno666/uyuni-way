@@ -21,6 +21,7 @@ const Navbar = () => {
         { name: 'Guía del Salar', path: '/guia' }, // <--- Ruta actualizada aquí
         { name: 'Tours', path: '/tours' },          // (Opcional) Preparado para futuro
         { name: 'Comunidad', path: '/foro' },
+        { name: 'Noticias', path: '/noticias' },
     ];
 
     useEffect(() => {
