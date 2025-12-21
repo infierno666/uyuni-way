@@ -1,11 +1,12 @@
-import { useRef } from 'react';
-// CORRECCIÓN: Agregamos 'useSpring' a la lista de imports
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { ArrowRight, PlayCircle, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Discover = () => {
     // 1. Configuración del efecto de Zoom
     const sectionRef = useRef(null);
+    const [isVideoOpen, setIsVideoOpen] = useState(false); // Estado para el modal de video
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -20,8 +21,8 @@ const Discover = () => {
         restDelta: 0.001
     });
 
-    // 3. ZOOM FUERTE (De 1 a 3 veces su tamaño)
-    const scale = useTransform(smoothScroll, [0, 1], [1, 3]);
+    // 3. ZOOM FUERTE (De 1 a 1.5 veces su tamaño - ajustado para que no sea tan agresivo)
+    const scale = useTransform(smoothScroll, [0, 1], [1, 1.5]);
 
     return (
         <section
@@ -35,14 +36,13 @@ const Discover = () => {
                 className="absolute inset-0 z-0 origin-center"
             >
                 <img
-                    // Asegúrate que esta imagen exista en tu carpeta public/images/
+                    // Asegúrate de que esta ruta sea correcta o usa una url absoluta si prefieres
                     src="/bgiolse.webp"
                     alt="Fondo Uyuni"
-                    className="w-full h-full object-cover opacity-100 transition-transform will-change-transform"
+                    className="w-full h-full object-cover opacity-60 transition-transform will-change-transform"
                 />
-
                 {/* Gradiente Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-uyuni-night via-uyuni-night/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
             </motion.div>
 
 
@@ -91,11 +91,18 @@ const Discover = () => {
                             transition={{ delay: 0.4 }}
                             className="flex flex-wrap gap-4"
                         >
-                            <button className="bg-uyuni-blue hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center gap-2">
-                                Ver Destinos <ArrowRight size={20} />
-                            </button>
+                            {/* BOTÓN 1: VA A TOURS */}
+                            <Link to="/tours">
+                                <button className="bg-uyuni-blue hover:bg-sky-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center gap-2 group">
+                                    Ver Destinos <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </Link>
 
-                            <button className="text-white hover:text-uyuni-blue font-semibold px-6 py-4 rounded-xl flex items-center gap-3 transition-colors group backdrop-blur-sm bg-white/5 hover:bg-white/10">
+                            {/* BOTÓN 2: ABRE MODAL VIDEO */}
+                            <button
+                                onClick={() => setIsVideoOpen(true)}
+                                className="text-white hover:text-uyuni-blue font-semibold px-6 py-4 rounded-xl flex items-center gap-3 transition-colors group backdrop-blur-sm bg-white/5 hover:bg-white/10"
+                            >
                                 <PlayCircle size={24} className="group-hover:scale-110 transition-transform text-gray-300 group-hover:text-uyuni-blue" />
                                 Ver Video Intro
                             </button>
@@ -115,9 +122,9 @@ const Discover = () => {
                             transition={{ duration: 0.8 }}
                             className="flex flex-col gap-4 mt-12 w-1/3"
                         >
-                            <div className="h-64 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+                            <Link to="/tours" className="h-64 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group cursor-pointer block">
                                 <img src="https://www.terresdesandes.org/images/uyuni_bolivia_coucher_de_soleil.jpeg" alt="Salar" className="w-full h-full object-cover group-hover:scale-110 transition-duration-700" />
-                            </div>
+                            </Link>
                             <div className="h-40 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
                                 <img src="https://www.machutravelperu.com/wp-content/uploads/2024/03/uyuni-bolivia-1.webp" alt="Flamencos" className="w-full h-full object-cover group-hover:scale-110 transition-duration-700" />
                             </div>
@@ -134,12 +141,12 @@ const Discover = () => {
                             <div className="h-48 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
                                 <img src="https://www.fodors.com/wp-content/uploads/2018/10/03.2_Salar_Landscpes_SaltHotels_shutterstock_532537840.jpg" alt="Cielo" className="w-full h-full object-cover group-hover:scale-110 transition-duration-700" />
                             </div>
-                            <div className="h-72 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group relative">
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 flex items-end p-4">
-                                    <p className="text-white text-xs font-bold">Salar de Uyuni</p>
+                            <Link to="/guia" className="h-72 w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10 group relative block cursor-pointer">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <p className="text-white text-xs font-bold">Ver Guía de Viaje &rarr;</p>
                                 </div>
                                 <img src="https://media.gettyimages.com/id/1465352457/video/surreal-drone-video-of-a-4x4-driving-across-the-mirror-like-surface-of-the-worlds-largest.jpg?s=640x640&k=20&c=pYe3aTDQumLGKHTr3gCaKWG0KZlEIgzSnze8_caTTO4=" alt="Desierto" className="w-full h-full object-cover group-hover:scale-110 transition-duration-700" />
-                            </div>
+                            </Link>
                         </motion.div>
 
                         {/* Columna 3 */}
@@ -158,6 +165,40 @@ const Discover = () => {
 
                 </div>
             </div>
+
+            {/* --- MODAL DE VIDEO (YOUTUBE) --- */}
+            <AnimatePresence>
+                {isVideoOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+                        onClick={() => setIsVideoOpen(false)} // Cerrar al hacer clic fuera
+                    >
+                        <div className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                            <button
+                                onClick={() => setIsVideoOpen(false)}
+                                className="absolute top-4 right-4 text-white hover:text-red-500 z-10 p-2 bg-black/50 rounded-full"
+                            >
+                                <X size={24} />
+                            </button>
+
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/PfRDCrfyyTU?autoplay=1"
+                                title="Mini Video Salar de Uyuni"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                className="w-full h-full"
+                            ></iframe>
+                        </div>
+
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
         </section>
     );
 };

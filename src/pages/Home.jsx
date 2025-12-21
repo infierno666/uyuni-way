@@ -7,8 +7,10 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <Discover /> 
+
             <InfoGrid />
+
+            <Discover />
             <ToursList />
         </>
     );

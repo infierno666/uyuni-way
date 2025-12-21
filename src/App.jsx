@@ -3,13 +3,16 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import ForumHome from './pages/ForumHome';
-import Login from './pages/Login';           // <--- Importar Login
-import { AuthProvider } from './context/AuthContext'; // <--- Importar Contexto
+import Login from './pages/Login';
+import { AuthProvider } from './context/AuthContext';
 import PostDetail from './pages/PostDetail';
+import Guide from './pages/Guide';
+import Tours from './pages/Tours'; // <--- 1. IMPORTAR TOURS
+import NewsPage from './pages/NewsPage';
 
 function App() {
   return (
-    <AuthProvider> {/* <--- Envolver TODO aquí */}
+    <AuthProvider>
       <div className="font-sans flex flex-col min-h-screen">
         <Navbar />
 
@@ -17,8 +20,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/foro" element={<ForumHome />} />
-            <Route path="/login" element={<Login />} /> {/* <--- Nueva Ruta */}
-            <Route path="/foro/:id" element={<PostDetail />} /> {/* <--- 2. Nueva Ruta Dinámica */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/foro/:id" element={<PostDetail />} />
+            <Route path="/guia" element={<Guide />} />
+            <Route path="/tours" element={<Tours />} /> {/* <--- 2. AGREGAR RUTA */}
+            <Route path="/noticias" element={<NewsPage />} />
           </Routes>
         </main>
 

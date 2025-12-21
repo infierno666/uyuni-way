@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'; // <--- Importar Link
 import { toursData } from '../../data/tours';
 import TourCard from '../ui/TourCard';
 
@@ -16,14 +17,20 @@ const ToursList = () => {
                             Los tours mejor valorados por viajeros de todo el mundo.
                         </p>
                     </div>
-                    <button className="text-uyuni-blue font-semibold hover:text-uyuni-dark transition-colors flex items-center gap-2">
+                    
+                    {/* Botón funcional que lleva a la página /tours */}
+                    <Link 
+                        to="/tours" 
+                        className="text-uyuni-blue font-semibold hover:text-uyuni-dark transition-colors flex items-center gap-2"
+                    >
                         Ver todos los tours &rarr;
-                    </button>
+                    </Link>
                 </div>
 
-                {/* GRID DE TOURS */}
+                {/* GRID DE TOURS (SOLO LOS PRIMEROS 3) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {toursData.map((tour) => (
+                    {/* Aquí usamos .slice(0, 3) para cortar el array */}
+                    {toursData.slice(0, 3).map((tour) => (
                         <TourCard key={tour.id} tour={tour} />
                     ))}
                 </div>

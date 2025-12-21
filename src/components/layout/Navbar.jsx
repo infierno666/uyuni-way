@@ -5,17 +5,21 @@ import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../lib/supabaseClient';
 
 const Navbar = () => {
+    // Nota: Si aún no tienes configurado AuthContext, estas líneas podrían dar error.
+    // Asegúrate de tener el contexto creado o comenta las líneas de auth temporalmente.
     const { user, signOut } = useAuth();
+
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [profile, setProfile] = useState(null);
 
     const location = useLocation();
 
+    // --- AQUÍ ESTÁ EL CAMBIO PRINCIPAL ---
     const navLinks = [
         { name: 'Inicio', path: '/' },
-        { name: 'Guía del Salar', path: '/' },
-        { name: 'Tours', path: '/' },
+        { name: 'Guía del Salar', path: '/guia' }, // <--- Ruta actualizada aquí
+        { name: 'Tours', path: '/tours' },          // (Opcional) Preparado para futuro
         { name: 'Comunidad', path: '/foro' },
     ];
 
@@ -117,7 +121,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* --- AQUÍ ESTÁ EL ARREGLO: MENU MÓVIL DESPLEGABLE --- */}
+            {/* MENU MÓVIL DESPLEGABLE */}
             {isOpen && (
                 <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 animate-in slide-in-from-top-5 duration-200">
                     <div className="px-4 py-6 space-y-4 flex flex-col">
