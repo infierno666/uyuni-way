@@ -19,9 +19,9 @@ const Footer = () => {
                             La plataforma comunitaria definitiva para explorar el Salar de Uyuni. Conectamos viajeros con experiencias locales auténticas y seguras.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="hover:text-uyuni-blue transition-colors"><Facebook size={20} /></a>
-                            <a href="#" className="hover:text-uyuni-blue transition-colors"><Instagram size={20} /></a>
-                            <a href="#" className="hover:text-uyuni-blue transition-colors"><Twitter size={20} /></a>
+                            <a href="https://www.facebook.com" className="hover:text-uyuni-blue transition-colors"><Facebook size={20} /></a>
+                            <a href="https://www.instagram.com" className="hover:text-uyuni-blue transition-colors"><Instagram size={20} /></a>
+                            <a href="https://www.x.com" className="hover:text-uyuni-blue transition-colors"><Twitter size={20} /></a>
                         </div>
                     </div>
 
@@ -30,9 +30,10 @@ const Footer = () => {
                         <h3 className="text-white font-bold mb-4 uppercase text-sm tracking-wider">Explorar</h3>
                         <ul className="space-y-3 text-sm">
                             <li><Link to="/" className="hover:text-uyuni-blue transition-colors">Inicio</Link></li>
-                            <li><a href="#" className="hover:text-uyuni-blue transition-colors">Guía del Salar</a></li>
-                            <li><a href="#" className="hover:text-uyuni-blue transition-colors">Mejores Tours</a></li>
-                            <li><a href="#" className="hover:text-uyuni-blue transition-colors">Galería de Fotos</a></li>
+                            <li><a href="/guia" className="hover:text-uyuni-blue transition-colors">Guía del Salar</a></li>
+                            <li><a href="/tours" className="hover:text-uyuni-blue transition-colors">Mejores Tours</a></li>
+                            <li><a href="/foro" className="hover:text-uyuni-blue transition-colors">Foro</a></li>
+                            <li><a href="/noticias" className="hover:text-uyuni-blue transition-colors">Noticias</a></li>
                         </ul>
                     </div>
 
