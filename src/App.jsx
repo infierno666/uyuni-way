@@ -13,7 +13,7 @@ import NewsPage from './pages/NewsPage';
 function App() {
   return (
     <AuthProvider>
-      <div className="font-sans flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen merriweather-regular">
         <Navbar />
 
         <main className="flex-grow">

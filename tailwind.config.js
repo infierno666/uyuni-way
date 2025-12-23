@@ -11,7 +11,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
+        merriweather: ['"Merriweather"', 'serif'],
       }
     },
   },

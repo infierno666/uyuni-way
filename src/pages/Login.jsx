@@ -67,7 +67,7 @@ const handleAuth = async (e) => {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12 ">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg border border-slate-200">
         
         <div className="text-center">
