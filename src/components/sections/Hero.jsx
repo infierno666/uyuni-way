@@ -14,8 +14,7 @@ const Hero = () => {
                     playsInline
                     poster="/hasd.webp"
                 >
-                    <source src="/viedo.mp4" type="video/mp4" />
-                    Tu navegador no soporta el tag de video.
+                    
                 </video>
 
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-uyuni-white/10"></div>
